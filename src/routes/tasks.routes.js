@@ -1,21 +1,21 @@
 const { Router } = require('express');
 const { getAllGenero, getGenero, createGenero, deleteGenero, updateGenero } = require('../controllers/tasks.controller')
-const { getAllEditorial, getEditorial, createEditorial, deleteEditorial, updateEditorial} = require('../controllers/tasks.controller')
-const { getAllLibros, getLibro, createLibro, deleteLibro, updateLibro} = require('../controllers/tasks.controller')
+const { getAllEditorial, getEditorial, createEditorial, deleteEditorial, updateEditorial } = require('../controllers/tasks.controller')
+const { getAllLibros, getLibro, createLibro, deleteLibro, updateLibro } = require('../controllers/tasks.controller')
 const { getAllAutores, getAutor, createAutor, deleteAutor, updateAutor } = require('../controllers/tasks.controller')
-const { getAllAutorxlibro, getAutorxlibro, createAutorxlibro, deleteAutorxlibro} = require('../controllers/tasks.controller')
-const { getAllEjemplar, getEjemplar, createEjemplar, deleteEjemplar, updateEjemplar } = require('../controllers/tasks.controller')
+const { getAllAutorxlibro, getAutorxlibro, createAutorxlibro, deleteAutorxlibro } = require('../controllers/tasks.controller')
+const { getAllEjemplar, getEjemplar, createEjemplar, deleteEjemplar, updateEjemplar, getEjemplar2, getEjemplar3 } = require('../controllers/tasks.controller')
 const { getAllIngresolibro, getIngresolibro, createIngresolibro, deleteIngresolibro, updateIngresolibro } = require('../controllers/tasks.controller')
 const { getAllRol, getRol } = require('../controllers/tasks.controller')
 const { getDetalleLibro } = require('../controllers/tasks.controller')
-const { getAllUsuarios, getUsuario, createUsuario, deleteUsuario, updateUsuario } = require('../controllers/tasks.controller')
+const { getAllUsuarios, getUsuario, createUsuario, deleteUsuario, updateUsuario, createUsuario2, getUsuario2, updateUsuario2 } = require('../controllers/tasks.controller')
 const { getAllDomicilio, getDomicilio, createDomicilio, deleteDomicilio, updateDomicilio } = require('../controllers/tasks.controller')
 const { getAllVentas, getVenta, createVenta } = require('../controllers/tasks.controller')
 const { getAllLineaventa, getLineaventa, createLineaventa, deleteLineaventa, updateLineaventa, } = require('../controllers/tasks.controller')
 const { getAllMensajes, getMensaje, createMensaje, deleteMensaje, updateMensaje } = require('../controllers/tasks.controller')
 const { getAllFavoritos, getFavorito, createFavorito, deleteFavorito, updateFavorito } = require('../controllers/tasks.controller')
-const { getAllResenias, getResenia, createResenia, deleteResenia} = require('../controllers/tasks.controller')
-
+const { getAllResenias, getResenia, createResenia, createResenia2, deleteResenia, getResenia3, getResenia4, getAllResenias2, getDetalleResenias } = require('../controllers/tasks.controller')
+const {getUsuarioAdmin} = require('../controllers/tasks.controller')
 const router = Router();
 
 //Tabla de Genero
@@ -34,11 +34,13 @@ router.put('/Editorial/:id_editorial', updateEditorial);
 
 //OBTIENE DETALLE DE CADA LIBRO
 router.get("/detalleLibro/:isbn", getDetalleLibro)
+router.get("/detalleLibro2/:isbn", getDetalleResenias)
+
 
 //Tabla de Libro
 router.get('/Libros', getAllLibros);
 router.get('/Libro/:isbn', getLibro);
-router.post('/Libro', createLibro); 
+router.post('/Libro', createLibro);
 router.delete('/Libro/:isbn', deleteLibro);
 router.put('/Libro/:isbn', updateLibro);
 
@@ -62,6 +64,9 @@ router.post("/Ejemplar", createEjemplar);
 router.delete("/Ejemplar/:id_ejemplar", deleteEjemplar);
 router.put("/Ejemplar/:id_ejemplar", updateEjemplar);
 
+router.get("/Ejemplar2/:genero", getEjemplar2);
+router.get("/Ejemplar3/:titulo", getEjemplar3);
+
 //Tabla de IngresoLibro
 router.get('/Ingresolibros', getAllIngresolibro);
 router.get('/Ingresolibro/:id_ingresolibro', getIngresolibro);
@@ -79,6 +84,12 @@ router.get("/Usuario/:documento", getUsuario);
 router.post("/Usuario", createUsuario);
 router.delete("/Usuario/:nombreusuario", deleteUsuario);
 router.put("/Usuario/:documento", updateUsuario);
+
+router.post("/Usuario2", createUsuario2);
+router.get("/Usuario2/:correo", getUsuario2);
+router.put("/Usuario2/:correo", updateUsuario2);
+
+router.get("/UsuarioAdmin/:documento", getUsuarioAdmin);
 
 //Tabla de Domicilio
 router.get('/Domicilios', getAllDomicilio);
@@ -115,8 +126,13 @@ router.put('/Favorito/:id_fav', updateFavorito);
 
 //Tabla de Resenia
 router.get('/Resenias', getAllResenias);
-router.get('/Resenia/:id_resenia', getResenia)
+router.get('/Resenia/:id_resenia', getResenia);
 router.post('/Resenia', createResenia);
 router.delete('/Resenia/:id_resenia', deleteResenia);
+
+router.get('/prueba2/:id_ejemplar', getResenia4);
+router.get('/Resenias2', getAllResenias2);
+
+router.post('/Resenia2', createResenia2);
 
 module.exports = router;

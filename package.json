@@ -1,7 +1,7 @@
 {
   "name": "taller",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000B\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000\r\u0000 \u0000#\u0000 \u0000B\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000_\u0000B\u0000o\u0000o\u0000k\u0000S\u0000t\u0000o\u0000r\u0000e\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -19,5 +19,13 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/milugi/Backend_BookStore.git"
+  },
+  "bugs": {
+    "url": "https://github.com/milugi/Backend_BookStore/issues"
+  },
+  "homepage": "https://github.com/milugi/Backend_BookStore#readme"
 }
