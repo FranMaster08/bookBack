@@ -7,7 +7,7 @@ const carModel = {
         `INSERT INTO public.carrito_temp(
             cantidad, precio, id_lineaventa, id_venta, id_ejemplar, img, titulo, autor, nombreusuario)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
-        [1, 1, 1, 1, 1, "tipo", "tipo", "tipo", "tipo"]
+        [...Object.values(libro)]
       );
       return result;
     } catch (error) {
@@ -44,10 +44,20 @@ const carModel = {
 
       return result;
     } catch (error) {
-        throw  error
+      throw error;
     }
   },
-  delete: async (libro) => {},
+  delete: async (libro, user) => {
+    try {
+      const result = await pool.query(
+        `DELETE FROM public.carrito_temp  WHERE nombreusuario = $1 and id_ejemplar= $2 `,
+        [user, libro]
+      );
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  },
 };
 
 module.exports = carModel;
@@ -55,12 +65,13 @@ module.exports = carModel;
 // carModel.create("fran").then(console.log).catch(console.error);
 
 //leer
-carModel.findAll("tipo").then(console.log).catch(console.error);
+//carModel.findAll("tipo").then(console.log).catch(console.error);
+// carModel.delete("tipo").then(console.log).catch(console.error);
 
 // modificar
 
 // carModel
-//   .edit({
+//   .delete({
 //     cantidad: 1,
 //     precio: 1,
 //     id_lineaventa: 1,
