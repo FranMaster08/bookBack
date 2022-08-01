@@ -231,4 +231,10 @@ router.get("/carrito/:user", carrito.getCar);
 router.post("/carrito", carrito.addCar);
 router.put("/carrito/:user", carrito.updateCar);
 router.delete("/carrito/:id", carrito.remove);
+
+const misComprasController = require("../controllers/miscompras.controller");
+//Mis compras
+router.get("/miscompras", misComprasController.addShop);
+router.get("/miscompras/:user", misComprasController.getShop);
+
 module.exports = router;
