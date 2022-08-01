@@ -1,4 +1,5 @@
 const pool = require("../db");
+const modelCar = require("./carrito.model");
 
 const comprasModel = {
   create: async (libro) => {
@@ -16,10 +17,22 @@ const comprasModel = {
   },
   findAll: async (user) => {
     try {
-      const dataCompras = await pool.query(
-        "SELECT * FROM compras where nombreusuario= $1",
+      let dataCompras = [];
+      let query = "SELECT * FROM compras where nombreusuario= $1";
+      const result = await pool.query(
+        "SELECT * FROM usuario WHERE correo = $1",
         [user]
       );
+
+      if (result.rows.length > 0) {
+        if (result.rows[0].id_rol === 11) {
+          query = `SELECT * FROM compras`;
+          dataCompras = await pool.query(query);
+        } else {
+          dataCompras = await pool.query(query, [user]);
+        }
+      }
+
       return dataCompras.rows;
     } catch (error) {
       throw error;
@@ -57,6 +70,13 @@ const comprasModel = {
     } catch (error) {
       throw error;
     }
+  },
+  borrarCarrito: async (user) => {
+    const libros = await modelCar.findAll(user);
+    libros.forEach(async (item) => {
+      await modelCar.delete(item.id_ejemplar, user);
+    });
+    return true;
   },
 };
 
