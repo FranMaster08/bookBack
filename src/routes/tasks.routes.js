@@ -236,5 +236,6 @@ const misComprasController = require("../controllers/miscompras.controller");
 //Mis compras
 router.get("/miscompras", misComprasController.addShop);
 router.get("/miscompras/:user", misComprasController.getShop);
+router.get("/fallo/:user", misComprasController.fallo);
 
 module.exports = router;

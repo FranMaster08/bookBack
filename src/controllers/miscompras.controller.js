@@ -74,6 +74,10 @@ const misComprasController = {
       res.status(404).json({ data: "ocurrio un error cargando datos " });
     }
   },
+
+  fallo: async (req, res, next) => {
+    res.redirect(`http://localhost:3000/home/${req.params.user}`)
+  }
 };
 
 module.exports = misComprasController;
